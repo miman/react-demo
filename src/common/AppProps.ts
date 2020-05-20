@@ -7,7 +7,7 @@ import { UiStore } from 'stores/UiStore/UiStore'
 import{ SessionStore } from 'stores/SessionStore/SessionStore';
 
 /**
- * The properites sent to the views by the framework
+ * The properites sent to the views by the framework when not injecting the stores
  */
 export interface AppProps {
     theme?: Theme;
@@ -28,7 +28,7 @@ export interface InjectionContext {
 }
 
 /**
- * The properites sent to the views by the framework
+ * The properites sent to the views by the framework when using inject("store")
  */
 export interface AppStoresProps extends AppProps {
     store: InjectionContext;
