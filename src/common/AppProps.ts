@@ -1,4 +1,6 @@
 import { Theme } from '@material-ui/core/styles';
+import { History, Location,  } from 'history';
+import { match } from 'react-router-dom';
 
 import { UserStore } from 'stores/UserStore/UserStore'
 import { UiStore } from 'stores/UiStore/UiStore'
@@ -10,9 +12,9 @@ import{ SessionStore } from 'stores/SessionStore/SessionStore';
 export interface AppProps {
     theme?: Theme;
     classes?: any;
-    history?: any;
-    location?: any;
-    match?: any;
+    history?: History;
+    location?: Location;
+    match?: match;
     width?: string;
 }
 

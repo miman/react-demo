@@ -52,7 +52,9 @@ class UsersToolbar extends React.Component<any, any> {
 
   handleDashboardClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.log("> handleDashboardClick");
-    this.props.history.push('/dashboard');
+    if (this.props.history != null) {
+      this.props.history.push('/dashboard');
+    }
   };
 
   render() {

@@ -59,7 +59,9 @@ class TestView extends React.Component<AppStoresProps, any> {
 
     handleUsersClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log("> handleUsersClick");
-        this.props.history.push('/users');
+        if (this.props.history != null) {
+            this.props.history.push('/users');
+        }
     };
 
     handleLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
