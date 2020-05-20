@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import {getAsInjectionContext} from 'common/InjectionContext';
 import { observer, inject } from 'mobx-react';
 import { SessionStore } from 'stores/SessionStore/SessionStore'
+import { AppStoresProps } from 'common/AppProps';
 
 /**
  * This router should be used onm routes that you must be logged in to see.
@@ -12,12 +12,12 @@ import { SessionStore } from 'stores/SessionStore/SessionStore'
  */
 @inject('store')
 @observer
-class ProtectedRoute extends React.Component<any, any> {
+class ProtectedRoute extends React.Component<AppStoresProps, any> {
   sessionStore: SessionStore;
 
-  constructor(props: any) {
+  constructor(props: AppStoresProps) {
     super(props);
-    this.sessionStore = getAsInjectionContext(this.props).sessionStore;
+    this.sessionStore = this.props.store.sessionStore;
   }
 
   /**

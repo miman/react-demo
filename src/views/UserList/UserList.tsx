@@ -2,8 +2,7 @@ import React from 'react';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { UserStore } from 'stores/UserStore/UserStore'
 import { observer, inject } from 'mobx-react';
-import { AppProps } from 'common/AppProps';
-import { getAsInjectionContext } from 'common/InjectionContext';
+import { AppStoresProps } from 'common/AppProps';
 import UsersToolbar from './UsersToolbar';
 import UsersTable from './UsersTable';
 
@@ -18,14 +17,16 @@ const styles = (theme: Theme) => ({
 
 @inject('store')
 @observer
-class UserList extends React.Component<AppProps, any> {
+class UserList extends React.Component<AppStoresProps, any> {
+  props: AppStoresProps;
   store: UserStore;
   theme?: Theme;
   classes?: any;
 
-  constructor(props: AppProps) {
+  constructor(props: AppStoresProps) {
     super(props);
-    this.store = getAsInjectionContext(this.props).userStore;
+    this.props = props;
+    this.store = this.props.store.userStore;
     this.theme = props.theme;
     this.classes = props.classes;
   }

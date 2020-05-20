@@ -4,9 +4,8 @@ import React from 'react';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { UserStore } from 'stores/UserStore/UserStore';
 import { observer, inject } from 'mobx-react';
-import { AppProps } from 'common/AppProps';
+import { AppStoresProps } from 'common/AppProps';
 import { Button } from '@material-ui/core';
-import { getAsInjectionContext } from 'common/InjectionContext';
 import{ SessionStore } from 'stores/SessionStore/SessionStore';
 
 const styles = (theme: Theme) => ({
@@ -29,16 +28,16 @@ const styles = (theme: Theme) => ({
 
 @inject('store')
 @observer
-class TestView extends React.Component<AppProps, any> {
+class TestView extends React.Component<AppStoresProps, any> {
     store: UserStore;
-    props: AppProps;
+    props: AppStoresProps;
     sessionStore: SessionStore;
 
-    constructor(props: AppProps) {
+    constructor(props: AppStoresProps) {
         super(props);
-        this.store = getAsInjectionContext(props).userStore;
-        this.sessionStore = getAsInjectionContext(props).sessionStore;
         this.props = props;
+        this.store = props.store.userStore;
+        this.sessionStore = props.store.sessionStore;
         this.handleUsersClick = this.handleUsersClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
     }

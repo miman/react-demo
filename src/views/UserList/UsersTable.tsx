@@ -18,8 +18,7 @@ import {
 import { User } from 'stores/UserStore/UserModel'
 import { observer, inject } from 'mobx-react';
 import { UserStore, FETCH_STATUS } from 'stores/UserStore/UserStore'
-import { AppProps } from 'common/AppProps';
-import { getAsInjectionContext } from 'common/InjectionContext';
+import { AppStoresProps } from 'common/AppProps';
 
 const styles = (theme: Theme) => ({
   root: {},
@@ -43,17 +42,15 @@ const styles = (theme: Theme) => ({
 
 @inject('store')
 @observer
-class UsersTable extends React.Component<AppProps, any> {
+class UsersTable extends React.Component<AppStoresProps, any> {
+  props: AppStoresProps;
   store: UserStore;
-  theme?: Theme;
-  classes?: any;
   rowsPerPage: number = 10;
 
-  constructor(props: AppProps) {
+  constructor(props: AppStoresProps) {
     super(props);
-    this.store = getAsInjectionContext(this.props).userStore;
-    this.theme = props.theme;
-    this.classes = props.classes;
+    this.props = props;
+    this.store = this.props.store.userStore;
   }
 
   /**
@@ -83,11 +80,11 @@ class UsersTable extends React.Component<AppProps, any> {
         }
 
         <Card
-          className={clsx(this.classes.root)}
+          className={clsx(this.props.classes.root)}
         >
-          <CardContent className={this.classes.content}>
+          <CardContent className={this.props.classes.content}>
             <PerfectScrollbar>
-              <div className={this.classes.inner}>
+              <div className={this.props.classes.inner}>
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -100,14 +97,14 @@ class UsersTable extends React.Component<AppProps, any> {
                   <TableBody>
                     {users.slice(0, this.rowsPerPage).map(user => (
                       <TableRow
-                        className={this.classes.tableRow}
+                        className={this.props.classes.tableRow}
                         hover
                         key={user.id}
                       >
                         <TableCell>
-                          <div className={this.classes.nameContainer}>
+                          <div className={this.props.classes.nameContainer}>
                             <Avatar
-                              className={this.classes.avatar}
+                              className={this.props.classes.avatar}
                               src={user.avatarUrl}
                             >
                               {"A B"}
@@ -128,7 +125,7 @@ class UsersTable extends React.Component<AppProps, any> {
               </div>
             </PerfectScrollbar>
           </CardContent>
-          <CardActions className={this.classes.actions}>
+          <CardActions className={this.props.classes.actions}>
           </CardActions>
         </Card>
       </div>

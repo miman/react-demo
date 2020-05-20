@@ -12,8 +12,7 @@ import {
 } from '@material-ui/core';
 
 import { observer, inject } from 'mobx-react';
-import { AppProps } from 'common/AppProps'
-import {getAsInjectionContext} from 'common/InjectionContext';
+import { AppStoresProps } from 'common/AppProps'
 import { observable, computed } from 'mobx';
 import{ SessionStore, LOGIN_STATUS } from 'stores/SessionStore/SessionStore';
 
@@ -68,10 +67,9 @@ const styles = (theme: Theme) => ({
 
 @inject('store')
 @observer
-class LoginView extends React.Component<AppProps, any> {
+class LoginView extends React.Component<AppStoresProps, any> {
+  props: AppStoresProps;
   sessionStore: SessionStore;
-  theme?: Theme;
-  classes?: any;
   formState: any = {
     isValid: false,
     values: {},
@@ -81,11 +79,10 @@ class LoginView extends React.Component<AppProps, any> {
   @observable password: string = "";
   @observable email: string = "";
 
-  constructor(props: AppProps) {
+  constructor(props: AppStoresProps) {
     super(props);
-    this.sessionStore = getAsInjectionContext(this.props).sessionStore;
-    this.theme = props.theme;
-    this.classes = props.classes;
+    this.props = props;
+    this.sessionStore = props.store.sessionStore;
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
@@ -141,7 +138,7 @@ class LoginView extends React.Component<AppProps, any> {
     }
 
     return (
-      <div className={this.classes.root}>
+      <div className={this.props.classes.root}>
         { 
           (this.sessionStore.loginStatus === LOGIN_STATUS.LOGIN_ONGOING)?
             <LinearProgress color="secondary" />
@@ -150,37 +147,37 @@ class LoginView extends React.Component<AppProps, any> {
         }
 
       <Grid
-        className={this.classes.grid}
+        className={this.props.classes.grid}
         container
       >
         <Grid
-          className={this.classes.content}
+          className={this.props.classes.content}
           item
           lg={7}
           xs={12}
         >
-          <div className={this.classes.content}>
-            <div className={this.classes.contentBody}>
+          <div className={this.props.classes.content}>
+            <div className={this.props.classes.contentBody}>
               <form
-                className={this.classes.form}
+                className={this.props.classes.form}
                 onSubmit={this.handleSignIn}
               >
                 <Typography
-                  className={this.classes.title}
+                  className={this.props.classes.title}
                   variant="h2"
                 >
                   Login
                 </Typography>
                 <Typography
                   align="center"
-                  className={this.classes.sugestion}
+                  className={this.props.classes.sugestion}
                   color="textSecondary"
                   variant="body1"
                 >
                   Login with email address
                 </Typography>
                 <TextField
-                  className={this.classes.textField}
+                  className={this.props.classes.textField}
                   error={this.hasError('email')}
                   fullWidth
                   helperText={
@@ -194,7 +191,7 @@ class LoginView extends React.Component<AppProps, any> {
                   variant="outlined"
                 />
                 <TextField
-                  className={this.classes.textField}
+                  className={this.props.classes.textField}
                   error={this.hasError('password')}
                   fullWidth
                   helperText={
@@ -208,7 +205,7 @@ class LoginView extends React.Component<AppProps, any> {
                   variant="outlined"
                 />
                 <Button
-                  className={this.classes.signInButton}
+                  className={this.props.classes.signInButton}
                   color="primary"
                   disabled={!this.enableLoginButton}
                   fullWidth

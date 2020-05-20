@@ -11,7 +11,7 @@ import theme from './theme';
 import { UserStore } from 'stores/UserStore/UserStore';
 import { UiStore } from 'stores/UiStore/UiStore'
 import { SessionStore } from 'stores/SessionStore/SessionStore'
-import { InjectionContext } from 'common/InjectionContext';
+import { InjectionContext } from 'common/AppProps';
 
 let userStore: UserStore = new UserStore();
 let uiStore: UiStore = new UiStore();
