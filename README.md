@@ -1,29 +1,29 @@
 # react-demo
-A demo ReactJS application using MobX and React router
+This is a tutorial project for howto make a React app with Typescript & MobX
 
-## Available Scripts
+We are using the following technologies:
+- React router
+- MobX
+- Typescript
+- Axios
 
-In the project directory, you can run:
+Here we create an application structure more like Java / Spring than standard React Javascript functional programming while I think this is a much nicer way to structure the code.
 
-### `npm start`
+The reasons why I think this is a much nicer development experiance than Javascript functional programming are:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Using Typescript you always know what is available for every object directly whne you are coding and replace finding spelling errors from runtime to development time.
+- Using classes you can encapsulate the logic in a good manner.
+- Using MobX for state management is much cleaner and easier than Hooks and less verbose than Redux.
+- Using MobX dependency injection makes it easy to find & use the common services/stores.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Views in the application:
+	- Login
+	- Main page
+	- User list
 
-### `npm test`
+## Tutorial videos
+A list of tutorial videos for this project can be found [here](https://www.youtube.com/playlist?list=PLwCg8ePegbf7Ix0DGRLaQ3abr7hI1Aj1e)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Building & running the app
+Info on howto build & run the app can be found [here](./docs/build.md)
