@@ -20,15 +20,11 @@ const styles = (theme: Theme) => ({
 class UserList extends React.Component<AppStoresProps, any> {
   props: AppStoresProps;
   store: UserStore;
-  theme?: Theme;
-  classes?: any;
 
   constructor(props: AppStoresProps) {
     super(props);
     this.props = props;
     this.store = this.props.store.userStore;
-    this.theme = props.theme;
-    this.classes = props.classes;
   }
 
   /**
@@ -49,9 +45,9 @@ class UserList extends React.Component<AppStoresProps, any> {
 
   render() {
     return (
-      <div className={this.classes.root} >
+      <div className={this.props.classes.root} >
         <UsersToolbar {...this.props} />
-        < div className={this.classes.content} >
+        < div className={this.props.classes.content} >
           <UsersTable {...this.props} />
         </div>
       </div>
