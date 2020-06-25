@@ -22,7 +22,7 @@ Views in the application:
 	- User list
 
 ## Tutorial videos
-A list of tutorial videos for this project can be found [here](https://www.youtube.com/playlist?list=PLwCg8ePegbf7Ix0DGRLaQ3abr7hI1Aj1e)
+A list of tutorial videos for this project can be found [here](https://www.youtube.com/playlist?list=PLoZRZ2zrcw__euLtwvh9wCytXRysgT0ZC)
 
 
 # Building & running the app
